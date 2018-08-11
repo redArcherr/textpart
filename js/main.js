@@ -1,23 +1,12 @@
-var ws,speak="#time";
-/*ws=new WebSocket("ws://192.168.1.64:8087");
-console.log(ws.readyState);
-if (ws.readyState==1){
-    speak="成功";
-}else{
-    speak="失败";
-}
-ws.addEventListener('open', function (event) {
-    ws.send('Hello Server!');
+var speak="#time";
+var socket=io.connect('localhost:3000');
+
+socket.on('control',function(msg){
+    speak=msg;
+    S.init();
 });
 
-ws.addEventListener("close", function(event) {
-    speak="#time";
-});
 
-ws.addEventListener("message", function(event) {
-    speak=event.data;
-});
-*/
 var S={
     init: function () {
         S.Drawing.init('canvas');
@@ -549,7 +538,7 @@ S.Shape = (function () {
 S.init();
 
 //获取数据
-function _callAjaxData() {
+/*function _callAjaxData() {
     $.ajax({
         type: "get",
         async: false,
@@ -574,4 +563,4 @@ function _callAjaxData() {
 }
 setInterval(function () {
     _callAjaxData();
-},300);
+},300);*/
